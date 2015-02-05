@@ -1,8 +1,11 @@
 package org.psf.domain;
 
+import org.springframework.data.annotation.Id;
+
 public class Registry {
 
-    private final long id;
+	@Id
+    private long id;
     
     private String name;
         
@@ -12,12 +15,20 @@ public class Registry {
     
     private String protocol;
 
-    public Registry(long id) {
-        this.id = id;
+    public Registry(long id, String name, String host, int port, String protocol) {
+    	this.id = id;
+    	this.name = name;
+    	this.host = host; 
+    	this.port = port;
+    	this.protocol = protocol;
     }
-
+    
     public long getId() {
         return id;
+    }
+    
+    public void setId(long id) {
+    	this.id = id;
     }
     
     public String getName() {

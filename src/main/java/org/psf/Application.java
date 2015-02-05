@@ -1,20 +1,24 @@
 package org.psf;
 
+import java.io.IOException;
+import java.util.Arrays;
+
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+
+import org.psf.config.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.SimpleCommandLinePropertySource;
-import org.psf.config.Constants;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import java.io.IOException;
-import java.util.Arrays;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @EnableAutoConfiguration
+@EnableMongoRepositories
 @ComponentScan
 public class Application {
 
