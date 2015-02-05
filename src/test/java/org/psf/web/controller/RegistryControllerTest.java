@@ -38,7 +38,7 @@ public class RegistryControllerTest {
     }
     
     @Test
-    public void showTest() throws Exception {
+    public void showTest200() throws Exception {
     	this.mockMvc.perform(get("/registries/1"))
         .andExpect(status().isOk())
         .andExpect(content().contentType("application/json;charset=UTF-8"))
@@ -46,6 +46,12 @@ public class RegistryControllerTest {
         .andExpect(jsonPath("$.host").value("host"))
         .andExpect(jsonPath("$.protocol").value("http"))
         .andExpect(jsonPath("$.id").value(1));
+    }
+    
+    @Test
+    public void showTest404() throws Exception {
+    	this.mockMvc.perform(get("/registries/3"))
+        .andExpect(status().isNotFound());
     }
     
     @Test
