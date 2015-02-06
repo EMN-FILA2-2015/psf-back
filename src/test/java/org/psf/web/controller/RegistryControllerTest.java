@@ -38,8 +38,42 @@ public class RegistryControllerTest {
         this.populator.populate();
     }
     
+    // TODO use Fongo
+    
     @Test
-    public void showTest200() throws Exception {
+    public void showRegistryTest200() throws Exception {
+    	this.mockMvc.perform(get("/registries/1"))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType("application/json;charset=UTF-8"));
+    }
+    
+    @Test
+    public void showRegistryTest404() throws Exception {
+    	this.mockMvc.perform(get("/registries/3"))
+        .andExpect(status().isNotFound());
+    }
+    
+    @Test
+    public void listRegistriesTest() throws Exception {
+    	this.mockMvc.perform(get("/registries"))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType("application/json;charset=UTF-8"));
+    }
+    
+    @Test
+    public void createRegistryTest() throws Exception {
+    	String payload = "{ \"name\": \"registry\", \"host\": \"host\", \"protocol\": \"https\", \"port\": 22222 }";
+    	this.mockMvc.perform(post("/registries")
+    			.contentType(MediaType.APPLICATION_JSON)
+    			.content(payload))
+    	.andExpect(status().isCreated())
+    	.andExpect(content().contentType("application/json;charset=UTF-8"));
+    }
+    
+    // Integration tests: TODO
+    
+    @Test
+    public void showRegistryIntegrationTest200() throws Exception {
     	this.mockMvc.perform(get("/registries/1"))
         .andExpect(status().isOk())
         .andExpect(content().contentType("application/json;charset=UTF-8"))
@@ -50,13 +84,7 @@ public class RegistryControllerTest {
     }
     
     @Test
-    public void showTest404() throws Exception {
-    	this.mockMvc.perform(get("/registries/3"))
-        .andExpect(status().isNotFound());
-    }
-    
-    @Test
-    public void indexTest() throws Exception {
+    public void listRegistriesIntegrationTest() throws Exception {
     	this.mockMvc.perform(get("/registries"))
         .andExpect(status().isOk())
         .andExpect(content().contentType("application/json;charset=UTF-8"))
@@ -70,15 +98,5 @@ public class RegistryControllerTest {
         .andExpect(jsonPath("$[1].port").value(22222))
         .andExpect(jsonPath("$[1].protocol").value("https"))
         .andExpect(jsonPath("$[1].id").value(2));
-    }
-    
-    @Test
-    public void createTest() throws Exception {
-    	String payload = "{ \"name\": \"registry\", \"host\": \"host\", \"protocol\": \"https\", \"port\": 22222 }";
-    	this.mockMvc.perform(post("/registries")
-    			.contentType(MediaType.APPLICATION_JSON)
-    			.content(payload))
-    	.andExpect(status().isCreated())
-    	.andExpect(content().contentType("application/json;charset=UTF-8"));
     }
 }

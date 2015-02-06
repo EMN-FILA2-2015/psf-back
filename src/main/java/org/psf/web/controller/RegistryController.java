@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.psf.domain.Registry;
 import org.psf.repository.RegistryRepository;
+import org.psf.web.exception.RegistryNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,15 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/registries")
 public class RegistryController {
 	
-	@ResponseStatus(HttpStatus.NOT_FOUND)
-	class RegistryNotFound extends RuntimeException {
-	}
-	
 	@Autowired
 	private RegistryRepository repository;
 
     @RequestMapping("/{id}")
-    public Registry show(@PathVariable("id") long id) {
+    public Registry showRegistry(@PathVariable("id") long id) {
     	Registry registry = repository.findOne(id);
     	if (registry != null)
     		return registry;
@@ -34,13 +31,13 @@ public class RegistryController {
     }
 
     @RequestMapping("")
-    public List<Registry> index() {
+    public List<Registry> listRegistries() {
     	return repository.findAll();
     }
     
     @RequestMapping(value = "", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED) 
-    public Registry create(@RequestBody Registry registry) {	
+    public Registry createRegistry(@RequestBody Registry registry) {	
     	return repository.save(registry);	    		
     }
 }
