@@ -7,7 +7,9 @@ import org.psf.repository.RegistryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +23,7 @@ public class RegistryController {
 	
 	@Autowired
 	private RegistryRepository repository;
-	
+
     @RequestMapping("/{id}")
     public Registry show(@PathVariable("id") long id) {
     	Registry registry = repository.findOne(id);
@@ -34,5 +36,11 @@ public class RegistryController {
     @RequestMapping("")
     public List<Registry> index() {
     	return repository.findAll();
+    }
+    
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED) 
+    public Registry create(@RequestBody Registry registry) {	
+    	return repository.save(registry);	    		
     }
 }

@@ -1,6 +1,7 @@
 package org.psf.web.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -11,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.psf.Application;
 import org.psf.repository.RegistryPopulator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -32,7 +34,6 @@ public class RegistryControllerTest {
     
     @Before
     public void setup() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(new RegistryController()).build();
         this.mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
         this.populator.populate();
     }
@@ -69,5 +70,15 @@ public class RegistryControllerTest {
         .andExpect(jsonPath("$[1].port").value(22222))
         .andExpect(jsonPath("$[1].protocol").value("https"))
         .andExpect(jsonPath("$[1].id").value(2));
+    }
+    
+    @Test
+    public void createTest() throws Exception {
+    	String payload = "{ \"name\": \"registry\", \"host\": \"host\", \"protocol\": \"https\", \"port\": 22222 }";
+    	this.mockMvc.perform(post("/registries")
+    			.contentType(MediaType.APPLICATION_JSON)
+    			.content(payload))
+    	.andExpect(status().isCreated())
+    	.andExpect(content().contentType("application/json;charset=UTF-8"));
     }
 }

@@ -15,6 +15,9 @@ public class Registry {
     
     private String protocol;
 
+    public Registry() {
+    }
+    
     public Registry(long id, String name, String host, int port, String protocol) {
     	this.id = id;
     	this.name = name;
@@ -62,5 +65,4 @@ public class Registry {
     public void setProtocol(String protocol) {
     	this.protocol = protocol;
     }
-    
 }
