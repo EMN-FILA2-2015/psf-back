@@ -66,19 +66,28 @@ public class RegistryControllerTest {
     }
     
     @Test
-    public void listRegistriesTest() throws Exception {
+    public void listRegistriesTest200() throws Exception {
     	this.mockMvc.perform(get("/registries"))
         .andExpect(status().isOk())
         .andExpect(content().contentType("application/json;charset=UTF-8"));
     }
     
     @Test
-    public void createRegistryTest() throws Exception {
+    public void createRegistryTest201() throws Exception {
     	String payload = "{ \"name\": \"registry\", \"host\": \"host\", \"protocol\": \"https\", \"port\": 22222 }";
     	this.mockMvc.perform(post("/registries")
     			.contentType(MediaType.APPLICATION_JSON)
     			.content(payload))
     	.andExpect(status().isCreated())
     	.andExpect(content().contentType("application/json;charset=UTF-8"));
+    }
+    
+    @Test
+    public void createRegistryTest400() throws Exception {
+    	String payload = "{ \"name\": \"\", \"host\": \"host\", \"protocol\": \"https\", \"port\": -1 }";
+    	this.mockMvc.perform(post("/registries")
+    			.contentType(MediaType.APPLICATION_JSON)
+    			.content(payload))
+    	.andExpect(status().isBadRequest());
     }
 }

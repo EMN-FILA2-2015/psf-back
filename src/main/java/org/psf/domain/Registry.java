@@ -1,5 +1,9 @@
 package org.psf.domain;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -9,10 +13,13 @@ public class Registry {
 	@Id
     private long id;
     
+	@NotNull
+	@NotEmpty
     private String name;
         
     private String host;
     
+    @Range(min = 0, max = 65535)
     private int port;
     
     private String protocol;

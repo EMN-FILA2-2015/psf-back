@@ -2,6 +2,8 @@ package org.psf.web.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.psf.domain.Registry;
 import org.psf.repository.RegistryRepository;
 import org.psf.web.exception.RegistryNotFound;
@@ -36,8 +38,8 @@ public class RegistryController {
     }
     
     @RequestMapping(value = "", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED) 
-    public Registry createRegistry(@RequestBody Registry registry) {	
+    @ResponseStatus(HttpStatus.CREATED)
+    public Registry createRegistry(@RequestBody @Valid Registry registry) {
     	return repository.save(registry);	    		
     }
 }
