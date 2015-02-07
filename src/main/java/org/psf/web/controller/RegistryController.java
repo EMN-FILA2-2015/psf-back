@@ -29,7 +29,7 @@ public class RegistryController {
     	else
     		throw new RegistryNotFound();
     }
-
+    
     @RequestMapping("")
     public List<Registry> listRegistries() {
     	return repository.findAll();
