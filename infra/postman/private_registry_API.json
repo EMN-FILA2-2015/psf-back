@@ -1,0 +1,77 @@
+{
+  "id": "2f451f35-9343-6a16-7565-9bd95cf40fe8",
+  "name": "Private registry",
+  "timestamp": 1422548514920,
+  "requests": [
+    {
+      "collectionId": "2f451f35-9343-6a16-7565-9bd95cf40fe8",
+      "id": "3f574e8b-6154-42ba-f99d-3217a1505d47",
+      "name": "Tags for projet1/Images2",
+      "description": "",
+      "url": "http://ns507652.ip-192-99-10.net:5000/v1/repositories/projet1/image2/tags",
+      "method": "GET",
+      "headers": "",
+      "data": [],
+      "dataMode": "params",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    },
+    {
+      "collectionId": "2f451f35-9343-6a16-7565-9bd95cf40fe8",
+      "id": "483d6393-93d7-c13a-7632-dcd20a866458",
+      "name": "All images",
+      "description": "",
+      "url": "http://ns507652.ip-192-99-10.net:5000/v1/search",
+      "method": "GET",
+      "headers": "",
+      "data": [],
+      "dataMode": "params",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    },
+    {
+      "collectionId": "2f451f35-9343-6a16-7565-9bd95cf40fe8",
+      "id": "999a021e-4a32-fb89-6298-c9ba20f736d6",
+      "name": "Images ancestry for the projet1/Images2 : latest",
+      "description": "",
+      "url": "http://ns507652.ip-192-99-10.net:5000/v1/images/4986bf8c15363d1c5d15512d5266f8777bfba4974ac56e3270e7760f6f0a8125/ancestry",
+      "method": "GET",
+      "headers": "",
+      "data": [],
+      "dataMode": "params",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    },
+    {
+      "collectionId": "2f451f35-9343-6a16-7565-9bd95cf40fe8",
+      "id": "c62ac08c-004c-667c-3911-7304c06d445e",
+      "name": "Ping registry",
+      "description": "",
+      "url": "http://ns507652.ip-192-99-10.net:5000/v1/_ping",
+      "method": "GET",
+      "headers": "",
+      "data": [],
+      "dataMode": "params",
+      "timestamp": 0,
+      "version": 2,
+      "time": 1423567113533
+    },
+    {
+      "collectionId": "2f451f35-9343-6a16-7565-9bd95cf40fe8",
+      "id": "d98444ab-ae71-82f6-09d9-0ebd035ccdf8",
+      "name": "Images for Project1",
+      "description": "",
+      "url": "http://ns507652.ip-192-99-10.net:5000/v1/search?q=projet1",
+      "method": "GET",
+      "headers": "",
+      "data": [],
+      "dataMode": "params",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    }
+  ]
+}
