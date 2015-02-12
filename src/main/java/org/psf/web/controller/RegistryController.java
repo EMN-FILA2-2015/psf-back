@@ -24,7 +24,7 @@ public class RegistryController {
 	private RegistryRepository repository;
 
     @RequestMapping("/{id}")
-    public Registry showRegistry(@PathVariable("id") long id) {
+    public Registry showRegistry(@PathVariable("id") String id) {
     	Registry registry = repository.findOne(id);
     	if (registry != null)
     		return registry;

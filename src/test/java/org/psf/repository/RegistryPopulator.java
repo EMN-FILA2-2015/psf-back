@@ -12,7 +12,7 @@ public class RegistryPopulator {
 
 	public void populate() {
 		repository.deleteAll();
-		repository.save(new Registry(1, "registry1", "host", 11111, "http"));
-		repository.save(new Registry(2, "registry2", "host", 22222, "https"));
+		repository.save(new Registry("54dcb42cc830c4b0c26b9a34", "registry1", "host", 11111, "http"));
+		repository.save(new Registry("54dcb42cc830c4b0c26b9a35", "registry2", "host", 22222, "https"));
 	}
 }

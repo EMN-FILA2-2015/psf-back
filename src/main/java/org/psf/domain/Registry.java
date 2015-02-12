@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Registry {
 
 	@Id
-    private long id;
+    private String id;
     
 	@NotNull
 	@NotEmpty
@@ -27,7 +27,7 @@ public class Registry {
     public Registry() {
     }
     
-    public Registry(long id, String name, String host, int port, String protocol) {
+    public Registry(String id, String name, String host, int port, String protocol) {
     	this.id = id;
     	this.name = name;
     	this.host = host; 
@@ -35,11 +35,11 @@ public class Registry {
     	this.protocol = protocol;
     }
     
-    public long getId() {
+    public String getId() {
         return id;
     }
     
-    public void setId(long id) {
+    public void setId(String id) {
     	this.id = id;
     }
     

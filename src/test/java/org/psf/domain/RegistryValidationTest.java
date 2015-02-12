@@ -32,7 +32,7 @@ public class RegistryValidationTest {
 	
 	@Before
 	public void setUp() {
-		registry = new Registry(1, "name", "host", 22222, "http");
+		registry = new Registry("54dcb42cc830c4b0c26b9a34", "name", "host", 22222, "http");
 	}
 	
 	@Test

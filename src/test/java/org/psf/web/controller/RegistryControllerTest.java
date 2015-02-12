@@ -54,14 +54,14 @@ public class RegistryControllerTest {
         
     @Test
     public void showRegistryTest200() throws Exception {
-    	this.mockMvc.perform(get("/registries/1"))
+    	this.mockMvc.perform(get("/registries/54dcb42cc830c4b0c26b9a34"))
         .andExpect(status().isOk())
         .andExpect(content().contentType("application/json;charset=UTF-8"));
     }
     
     @Test
     public void showRegistryTest404() throws Exception {
-    	this.mockMvc.perform(get("/registries/3"))
+    	this.mockMvc.perform(get("/registries/54dcb42cc830c4b0c26b9a36"))
         .andExpect(status().isNotFound());
     }
     
