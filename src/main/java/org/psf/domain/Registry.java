@@ -24,15 +24,18 @@ public class Registry {
     
     private String protocol;
 
+    private RegistryKind kind;
+    
     public Registry() {
     }
     
-    public Registry(String id, String name, String host, int port, String protocol) {
+    public Registry(String id, String name, String host, int port, String protocol, RegistryKind kind) {
     	this.id = id;
     	this.name = name;
     	this.host = host; 
     	this.port = port;
     	this.protocol = protocol;
+    	this.kind = kind;
     }
     
     public String getId() {
@@ -67,7 +70,15 @@ public class Registry {
     	this.port = port;
     }
     
-    public String getProtocol() {
+    public RegistryKind getKind() {
+		return kind;
+	}
+
+	public void setKind(RegistryKind kind) {
+		this.kind = kind;
+	}
+
+	public String getProtocol() {
     	return protocol;
     }
     

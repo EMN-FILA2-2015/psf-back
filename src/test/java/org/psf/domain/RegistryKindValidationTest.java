@@ -23,50 +23,49 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @ContextConfiguration(classes = {Application.class})
 @WebAppConfiguration
 @ActiveProfiles("test")
-public class RegistryValidationTest {
+public class RegistryKindValidationTest {
 
 	@Autowired
 	private Validator validator;
 
-	private Registry registry;
+	private RegistryKind kind;
 	
 	@Before
 	public void setUp() {
-		RegistryKind kind = new RegistryKind("Docker", "path", "127.0.0.1", 5000, false);
-		registry = new Registry("54dcb42cc830c4b0c26b9a34", "name", "host", 22222, "http", kind);
+		kind = new RegistryKind("Docker", "path", "127.0.0.1", 5000, false);
 	}
 	
 	@Test
-	public void testRegistryIsValid() {
-		Set<ConstraintViolation<Registry>> errors = validator.validate(registry, Default.class);
+	public void testRegistryKindIsValid() {
+		Set<ConstraintViolation<RegistryKind>> errors = validator.validate(kind, Default.class);
 		assertTrue(errors.isEmpty());
 	}
 	
 	@Test
 	public void testNameCannotBeNull() {
-		registry.setName(null);
-		Set<ConstraintViolation<Registry>> errors = validator.validateProperty(registry, "name", Default.class);
+		kind.setName(null);
+		Set<ConstraintViolation<RegistryKind>> errors = validator.validateProperty(kind, "name", Default.class);
 		assertFalse(errors.isEmpty());
 	}
 	
 	@Test
 	public void testNameCannotBeEmpty() {
-		registry.setName("");
-		Set<ConstraintViolation<Registry>> errors = validator.validateProperty(registry, "name", Default.class);
+		kind.setName("");
+		Set<ConstraintViolation<RegistryKind>> errors = validator.validateProperty(kind, "name", Default.class);
 		assertFalse(errors.isEmpty());
 	}
 	
 	@Test
 	public void testPortCannotBeNegative() {
-		registry.setPort(-1);
-		Set<ConstraintViolation<Registry>> errors = validator.validateProperty(registry, "port", Default.class);
+		kind.setPort(-1);
+		Set<ConstraintViolation<RegistryKind>> errors = validator.validateProperty(kind, "port", Default.class);
 		assertFalse(errors.isEmpty());
 	}
 	
 	@Test
 	public void testPortCannotBeGreaterThan65535() {
-		registry.setPort(65536);
-		Set<ConstraintViolation<Registry>> errors = validator.validateProperty(registry, "port", Default.class);
+		kind.setPort(65536);
+		Set<ConstraintViolation<RegistryKind>> errors = validator.validateProperty(kind, "port", Default.class);
 		assertFalse(errors.isEmpty());
 	}
 	
